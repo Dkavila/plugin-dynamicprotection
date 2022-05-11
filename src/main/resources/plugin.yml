@@ -3,4 +3,3 @@ version: "1.0-SNAPSHOT"
 main: "me.dkavila.dynamicprotection.DynamicProtection"
 
 commands:
-  help:

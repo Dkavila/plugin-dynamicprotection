@@ -1,26 +1,19 @@
 package me.dkavila.dynamicprotection;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import me.dkavila.dynamicprotection.listeners.Listeners;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class DynamicProtection extends JavaPlugin {
 
     public void onEnable(){
         getLogger().info("DynamicProtection - Initialized");
+        saveDefaultConfig();
+        saveConfig();
+        getServer().getPluginManager().registerEvents(new Listeners(), this);
     }
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(command.getName().equalsIgnoreCase("dynamicprotection")) {
-            getLogger().info("Sender:" + sender);
-            getLogger().info("Player:" + (Player)sender );
-            getLogger().info("Command:" + command);
-            getLogger().info("Label:" + label);
-            getLogger().info("Args:" + args);
-        }
-        return true;
+    public void onDisable() {
+        getLogger().info("DynamicProtection - Disabling...");
+        saveDefaultConfig();
+        saveConfig();
     }
-
 }
